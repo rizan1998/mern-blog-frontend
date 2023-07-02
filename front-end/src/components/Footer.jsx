@@ -8,8 +8,8 @@ import { images } from "../constants";
 const Footer = () => {
   return (
     <section className="bg-dark-hard">
-      <footer className="container mx-auto grid grid-cols-10 px-5 py-10 gap-y-10 gap-x-5 md:pt-20 md:grid-cols-12 ">
-        <div className="col-span-5 md:col-span-4 ">
+      <footer className="container mx-auto grid grid-cols-10 px-5 py-10 gap-y-10 gap-x-5 md:pt-20 md:grid-cols-12 lg:grid-cols-10 lg:gap-x-10 ">
+        <div className="col-span-5 md:col-span-4  lg:col-span-2">
           <h3 className="text-dark-light font-bold md:text-lg">Product</h3>
           <ul className="text-[#959EAD] text-sm mt-5 space-y-4 md:text-base">
             <li>
@@ -29,7 +29,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-5 md:col-span-4 ">
+        <div className="col-span-5 md:col-span-4  lg:col-span-2">
           <h3 className="text-dark-light font-bold md:text-lg">Services</h3>
           <ul className="text-[#959EAD] text-sm mt-5 space-y-4 md:text-base">
             <li>
@@ -49,7 +49,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-5 md:col-span-4 md:col-start-5 ">
+        <div className="col-span-5 md:col-span-4 md:col-start-5  lg:col-span-2 lg:col-span-auto">
           <h3 className="text-dark-light font-bold md:text-lg">Company</h3>
           <ul className="text-[#959EAD] text-sm mt-5 space-y-4 md:text-base">
             <li>
@@ -69,7 +69,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-5 md:col-span-4 ">
+        <div className="col-span-5 md:col-span-4  lg:col-span-2">
           <h3 className="text-dark-light font-bold md:text-lg">More</h3>
           <ul className="text-[#959EAD] text-sm mt-5 space-y-4 md:text-base">
             <li>
@@ -83,7 +83,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-10 md:order-first md:col-span-4">
+        <div className="col-span-10 md:order-first md:col-span-4 lg:col-span-2">
           <img src={images.logo} alt="logo" className="brightness-0 invert mx-auto md:mx-0" />
           <p className="text-sm text-dark-light text-center mt-4 md:text-left md:text-base">Build a modern and creative website with cleans</p>
           <ul className="flex justify-center items-center mt-5 space-x-4 text-gray-300 md:justify-start">
@@ -114,7 +114,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="hidden md:flex flex-col items-center space-y-4 md:col-span-12">
+        <div className="hidden md:flex flex-col items-center space-y-4 md:col-span-12 lg:col-span-10">
           <div className="bg-primary text-white p-3 rounded-full">
             <AiFillHeart className="w-7 h-auto" />
           </div>
