@@ -15,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "dev": "docker-compose -f docker-compose.dev.yml up",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

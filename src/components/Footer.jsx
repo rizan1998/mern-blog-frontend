@@ -88,27 +88,27 @@ const Footer = () => {
           <p className="text-sm text-dark-light text-center mt-4 md:text-left md:text-base">Build a modern and creative website with cleans</p>
           <ul className="flex justify-center items-center mt-5 space-x-4 text-gray-300 md:justify-start">
             <li>
-              <a href="">
+              <a href="/">
                 <FaFacebook className="w-6 h-auto" />
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="/">
                 <FaGithub className="w-6 h-auto" />
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="/">
                 <BsTelegram className="w-6 h-auto" />
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="/">
                 <AiOutlineTwitter className="w-6 h-auto" />
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="/">
                 <AiFillInstagram className="w-6 h-auto" />
               </a>
             </li>
