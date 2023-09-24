@@ -58,7 +58,7 @@ const tagsData = ["Medical", "Lifestyle", "Learn", "Healty", "Food", "Diet", "Ed
 function ArticleDetailPage() {
   return (
     <MainLayout>
-      <section className="container mx-auto max-w-5x1 flex flex-col px-5 py-5">
+      <section className="container mx-auto max-w-5x1 flex flex-col px-5 py-5 lg:flex-row lg:gap-x-5 lg:items-start">
         <article className="flex-1">
           <BreadCrumbs data={breadCrumbsData} />
           <img className="rounded-xl w-full" src={images.Post1Image} alt="laptop" />
@@ -73,7 +73,7 @@ function ArticleDetailPage() {
             </p>
           </div>
         </article>
-        <SuggestPosts header="Latest Article" posts={postsData} tags={tagsData} className="mt-8" />
+        <SuggestPosts header="Latest Article" posts={postsData} tags={tagsData} className="mt-8 lg:mt-0 lg:max-w-xs" />
       </section>
     </MainLayout>
   );

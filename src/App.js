@@ -8,7 +8,7 @@ function App() {
     <div className="App font-opensans">
       <Routes>
         <Route index path="/" element={<HomePage />}></Route>
-        <Route index path="/blog/:id" element={<ArticleDetailPage />}></Route>
+        <Route path="/blog/:id" element={<ArticleDetailPage />}></Route>
       </Routes>
     </div>
   );
