@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 
-const CommentForm = ({ btnLabel }) => {
+const CommentForm = ({ btnLabel, formSubmitHandler }) => {
   const [value, setValue] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
+    formSubmitHandler(value);
+    setValue("");
   };
+
   return (
     <form onSubmit={submitHandler}>
       <div className="flex flex-col items-end border border-primary rounded-lg p-4">
