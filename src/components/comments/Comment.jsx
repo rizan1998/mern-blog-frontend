@@ -3,10 +3,11 @@ import { FiMessageSquare, FiEdit2, FiTrash } from "react-icons/fi";
 import { images } from "../../constants";
 import CommentForm from "./CommentForm";
 
-const Comment = ({ comment, logginedUserId, setAffectedComment }) => {
+const Comment = ({ comment, logginedUserId, setAffectedComment, addComment, parentId = null }) => {
   const isUserLoggined = Boolean(logginedUserId);
   const commentBelongsToUser = logginedUserId === comment.user._id;
   const isReplying = setAffectedComment;
+  const repliedCommentId = parentId ? parentId : comment._id;
   return (
     <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg">
       <img src={images.PostProfileImage} alt="user profile" className="w-9 h-9 object-cover rounded-full" />
@@ -40,7 +41,7 @@ const Comment = ({ comment, logginedUserId, setAffectedComment }) => {
               </button>
             </>
           )}
-          {isReplying && <CommentForm btnLabel="Reply" formSubmitHandler={(value) => addComment()} />}
+          {isReplying && <CommentForm btnLabel="Reply" formSubmitHandler={(value) => addComment(value, repliedCommentId)} />}
         </div>
       </div>
     </div>

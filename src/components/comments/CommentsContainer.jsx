@@ -38,7 +38,7 @@ const CommentsContainer = ({ className, logginedUserId }) => {
       <CommentForm btnLabel="Send" formSubmitHandler={(value) => addCommentHandler(value)} />
       <div className="space-y-4 mt-8 ">
         {mainComments.map((comment, index) => (
-          <Comment key={index} comment={comment} logginedUserId={logginedUserId} affectedComment={affectedComment} setAffectedComment={setAffectedComment} />
+          <Comment key={index} comment={comment} logginedUserId={logginedUserId} affectedComment={affectedComment} setAffectedComment={setAffectedComment} addComment={addCommentHandler} />
         ))}
       </div>
     </div>
