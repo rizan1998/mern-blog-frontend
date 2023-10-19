@@ -3,10 +3,10 @@ import { FiMessageSquare, FiEdit2, FiTrash } from "react-icons/fi";
 import { images } from "../../constants";
 import CommentForm from "./CommentForm";
 
-const Comment = ({ comment, logginedUserId, setAffectedComment, addComment, parentId = null }) => {
+const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment, addComment, parentId = null }) => {
   const isUserLoggined = Boolean(logginedUserId);
   const commentBelongsToUser = logginedUserId === comment.user._id;
-  const isReplying = setAffectedComment;
+  const isReplying = affectedComment && affectedComment.type === "replying" && affectedComment._id === comment._id;
   const repliedCommentId = parentId ? parentId : comment._id;
   const replyOnUserId = comment.user._id;
   // console.log(repliedCommentId);
@@ -45,7 +45,7 @@ const Comment = ({ comment, logginedUserId, setAffectedComment, addComment, pare
             </>
           )}
         </div>
-        {isReplying && <CommentForm btnLabel="Reply" formSubmitHandler={(value) => addComment(value, repliedCommentId, replyOnUserId)} />}
+        {isReplying && <CommentForm btnLabel="Reply" formSubmitHandler={(value) => addComment(value, repliedCommentId, replyOnUserId)} formCancelHandler={() => setAffectedComment(null)} />}
       </div>
     </div>
   );
