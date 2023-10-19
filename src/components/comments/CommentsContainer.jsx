@@ -7,6 +7,7 @@ const CommentsContainer = ({ className, logginedUserId }) => {
   const [comments, setComments] = useState([]);
   const mainComments = comments.filter((comment) => comment.parent === null);
   const [affectedComment, setAffectedComment] = useState(null);
+  console.log(comments);
 
   useEffect(() => {
     (async () => {
@@ -16,6 +17,7 @@ const CommentsContainer = ({ className, logginedUserId }) => {
   }, []);
 
   const addCommentHandler = ({ value, parent = null, replyOnUser = null }) => {
+    console.log(value);
     const newComment = {
       _id: "10",
       user: {
@@ -28,6 +30,7 @@ const CommentsContainer = ({ className, logginedUserId }) => {
       replyOnUser: null,
       createdAt: "2022-12-31T17:22:05.092+0000",
     };
+
     setComments((curState) => {
       return [newComment, ...curState];
     });
@@ -35,7 +38,7 @@ const CommentsContainer = ({ className, logginedUserId }) => {
 
   return (
     <div className={`${className}`}>
-      <CommentForm btnLabel="Send" formSubmitHandler={(value) => addCommentHandler(value)} />
+      <CommentForm btnLabel="Send" formSubmitHandler={(value) => addCommentHandler({ value })} />
       <div className="space-y-4 mt-8 ">
         {mainComments.map((comment, index) => (
           <Comment key={index} comment={comment} logginedUserId={logginedUserId} affectedComment={affectedComment} setAffectedComment={setAffectedComment} addComment={addCommentHandler} />

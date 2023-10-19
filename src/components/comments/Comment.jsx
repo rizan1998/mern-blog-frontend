@@ -9,6 +9,8 @@ const Comment = ({ comment, logginedUserId, setAffectedComment, addComment, pare
   const isReplying = setAffectedComment;
   const repliedCommentId = parentId ? parentId : comment._id;
   const replyOnUserId = comment.user._id;
+  // console.log(repliedCommentId);
+
   return (
     <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg">
       <img src={images.PostProfileImage} alt="user profile" className="w-9 h-9 object-cover rounded-full" />
@@ -42,8 +44,8 @@ const Comment = ({ comment, logginedUserId, setAffectedComment, addComment, pare
               </button>
             </>
           )}
-          {isReplying && <CommentForm btnLabel="Reply" formSubmitHandler={(value) => addComment(value, repliedCommentId, replyOnUserId)} />}
         </div>
+        {isReplying && <CommentForm btnLabel="Reply" formSubmitHandler={(value) => addComment(value, repliedCommentId, replyOnUserId)} />}
       </div>
     </div>
   );
