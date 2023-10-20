@@ -3,7 +3,7 @@ import { FiMessageSquare, FiEdit2, FiTrash } from "react-icons/fi";
 import { images } from "../../constants";
 import CommentForm from "./CommentForm";
 
-const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment, addComment, parentId = null, updateComment, deleteComment }) => {
+const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment, addComment, parentId = null, updateComment, deleteComment, replies }) => {
   const isUserLoggined = Boolean(logginedUserId);
   const commentBelongsToUser = logginedUserId === comment.user._id;
   const isReplying = affectedComment && affectedComment.type === "replying" && affectedComment._id === comment._id;
@@ -47,6 +47,24 @@ const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment,
           )}
         </div>
         {isReplying && <CommentForm btnLabel="Reply" formSubmitHanlder={(value) => addComment(value, repliedCommentId, replyOnUserId)} formCancelHandler={() => setAffectedComment(null)} />}
+        {replies.length > 0 && (
+          <div>
+            {replies.map((reply) => (
+              <Comment
+                key={reply._id}
+                addComment={addComment}
+                affectedComment={affectedComment}
+                setAffectedComment={setAffectedComment}
+                comment={reply}
+                deleteComment={deleteComment}
+                logginedUserId={logginedUserId}
+                replies={[]}
+                updateComment={updateComment}
+                parentId={comment._id}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
