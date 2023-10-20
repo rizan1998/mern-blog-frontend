@@ -3,7 +3,7 @@ import { FiMessageSquare, FiEdit2, FiTrash } from "react-icons/fi";
 import { images } from "../../constants";
 import CommentForm from "./CommentForm";
 
-const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment, addComment, parentId = null, updateComment }) => {
+const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment, addComment, parentId = null, updateComment, deleteComment }) => {
   const isUserLoggined = Boolean(logginedUserId);
   const commentBelongsToUser = logginedUserId === comment.user._id;
   const isReplying = affectedComment && affectedComment.type === "replying" && affectedComment._id === comment._id;
@@ -39,7 +39,7 @@ const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment,
                 <FiEdit2 className="w-4 h-auto" />
                 <span>Edit</span>
               </button>
-              <button className="flex items-center space-x-2">
+              <button className="flex items-center space-x-2" onClick={() => deleteComment(comment._id)}>
                 <FiTrash className="w-4 h-auto" />
                 <span>Delete</span>
               </button>
