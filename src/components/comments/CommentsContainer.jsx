@@ -34,6 +34,18 @@ const CommentsContainer = ({ className, logginedUserId }) => {
     setComments((curState) => {
       return [newComment, ...curState];
     });
+    setAffectedComment(null);
+  };
+
+  const updateCommentHandler = (value, commentId) => {
+    const updateComments = comments.map((comment) => {
+      if (comment._id === commentId) {
+        return { ...comment, desc: value };
+      }
+      return comment;
+    });
+    setComments(updateComments);
+    setAffectedComment(null);
   };
 
   return (
@@ -41,7 +53,7 @@ const CommentsContainer = ({ className, logginedUserId }) => {
       <CommentForm btnLabel="Send" formSubmitHanlder={(value) => addCommentHandler(value)} />
       <div className="space-y-4 mt-8 ">
         {mainComments.map((comment) => (
-          <Comment key={comment._id} comment={comment} logginedUserId={logginedUserId} affectedComment={affectedComment} setAffectedComment={setAffectedComment} addComment={addCommentHandler} />
+          <Comment key={comment._id} comment={comment} logginedUserId={logginedUserId} affectedComment={affectedComment} setAffectedComment={setAffectedComment} addComment={addCommentHandler} updateComment={updateCommentHandler} />
         ))}
       </div>
     </div>

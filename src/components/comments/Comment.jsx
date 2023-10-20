@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { FiMessageSquare, FiEdit2, FiTrash } from "react-icons/fi";
 import { images } from "../../constants";
 import CommentForm from "./CommentForm";
 
-const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment, addComment, parentId = null }) => {
+const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment, addComment, parentId = null, updateComment }) => {
   const isUserLoggined = Boolean(logginedUserId);
   const commentBelongsToUser = logginedUserId === comment.user._id;
   const isReplying = affectedComment && affectedComment.type === "replying" && affectedComment._id === comment._id;
+  const isEditing = affectedComment && affectedComment.type === "editing" && affectedComment._id === comment._id;
   const repliedCommentId = parentId ? parentId : comment._id;
   const replyOnUserId = comment.user._id;
-  const [testing, setTesting] = useState([]);
-  // console.log(testing);
-  // console.log(comment);
-  // console.log([repliedCommentId, replyOnUserId]);
 
   return (
     <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg">
@@ -27,7 +24,8 @@ const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment,
             hour: "2-digit",
           })}
         </span>
-        <p className="font-opensans mt-[10px] text-dark-light">{comment.desc}</p>
+        {!isEditing && <p className="font-opensans mt-[10px] text-dark-light">{comment.desc}</p>}
+        {isEditing && <CommentForm btnLabel="Update" formSubmitHanlder={(value) => updateComment(value, comment._id)} initialText={comment.desc} formCancelHandler={() => setAffectedComment(null)} />}
         <div className="flex items-center gap-x-3 text-dark-light font-roboto text-sm mt-3 mb-3">
           {isUserLoggined && (
             <button className="flex items-center space-x-2" onClick={() => setAffectedComment({ type: "replying", _id: comment._id })}>
@@ -37,7 +35,7 @@ const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment,
           )}
           {commentBelongsToUser && (
             <>
-              <button className="flex items-center space-x-2">
+              <button onClick={() => setAffectedComment({ type: "editing", _id: comment._id })} className="flex items-center space-x-2">
                 <FiEdit2 className="w-4 h-auto" />
                 <span>Edit</span>
               </button>
