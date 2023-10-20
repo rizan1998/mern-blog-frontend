@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiMessageSquare, FiEdit2, FiTrash } from "react-icons/fi";
 import { images } from "../../constants";
 import CommentForm from "./CommentForm";
@@ -9,7 +9,10 @@ const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment,
   const isReplying = affectedComment && affectedComment.type === "replying" && affectedComment._id === comment._id;
   const repliedCommentId = parentId ? parentId : comment._id;
   const replyOnUserId = comment.user._id;
-  // console.log(repliedCommentId);
+  const [testing, setTesting] = useState([]);
+  // console.log(testing);
+  // console.log(comment);
+  // console.log([repliedCommentId, replyOnUserId]);
 
   return (
     <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg">
@@ -45,7 +48,7 @@ const Comment = ({ comment, logginedUserId, affectedComment, setAffectedComment,
             </>
           )}
         </div>
-        {isReplying && <CommentForm btnLabel="Reply" formSubmitHandler={(value) => addComment(value, repliedCommentId, replyOnUserId)} formCancelHandler={() => setAffectedComment(null)} />}
+        {isReplying && <CommentForm btnLabel="Reply" formSubmitHanlder={(value) => addComment(value, repliedCommentId, replyOnUserId)} formCancelHandler={() => setAffectedComment(null)} />}
       </div>
     </div>
   );

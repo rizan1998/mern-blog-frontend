@@ -16,10 +16,10 @@ const CommentsContainer = ({ className, logginedUserId }) => {
     })();
   }, []);
 
-  const addCommentHandler = ({ value, parent = null, replyOnUser = null }) => {
-    console.log(value);
+  const addCommentHandler = (value, parent = null, replyOnUser = null) => {
+    console.log([value, parent, replyOnUser]);
     const newComment = {
-      _id: "10",
+      _id: 10 + 1,
       user: {
         _id: "a",
         name: "Mohammad Rezaii",
@@ -27,7 +27,7 @@ const CommentsContainer = ({ className, logginedUserId }) => {
       desc: value,
       post: "1",
       parent: parent,
-      replyOnUser: null,
+      replyOnUser: replyOnUser,
       createdAt: "2022-12-31T17:22:05.092+0000",
     };
 
@@ -38,7 +38,7 @@ const CommentsContainer = ({ className, logginedUserId }) => {
 
   return (
     <div className={`${className}`}>
-      <CommentForm btnLabel="Send" formSubmitHandler={(value) => addCommentHandler({ value })} />
+      <CommentForm btnLabel="Send" formSubmitHanlder={(value) => addCommentHandler(value)} />
       <div className="space-y-4 mt-8 ">
         {mainComments.map((comment) => (
           <Comment key={comment._id} comment={comment} logginedUserId={logginedUserId} affectedComment={affectedComment} setAffectedComment={setAffectedComment} addComment={addCommentHandler} />
