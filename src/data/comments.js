@@ -25,6 +25,18 @@ export const getCommentsData = async () => {
       createdAt: "2022-12-31T17:22:05.092+0000",
     },
     {
+      _id: "14",
+      user: {
+        _id: "b",
+        name: "Paul M. Williams",
+      },
+      desc: "a reply for Mohammad",
+      post: "1",
+      parent: "10",
+      replyOnUser: "a",
+      createdAt: "2022-12-31T17:22:05.092+0000",
+    },
+    {
       _id: "12",
       user: {
         _id: "b",
@@ -46,6 +58,18 @@ export const getCommentsData = async () => {
       post: "1",
       parent: null,
       replyOnUser: null,
+      createdAt: "2022-12-31T17:22:05.092+0000",
+    },
+    {
+      _id: "15",
+      user: {
+        _id: "b",
+        name: "Paul M. Williams",
+      },
+      desc: "testing reply",
+      post: "1",
+      parent: "12",
+      replyOnUser: "a",
       createdAt: "2022-12-31T17:22:05.092+0000",
     },
   ];
