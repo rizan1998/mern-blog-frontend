@@ -1,11 +1,11 @@
 import React from "react";
-import MainLayout from "../../../components/MainLayout";
-import BreadCrumbs from "../../../components/BreadCrumbs";
-import { images } from "../../../constants";
+import MainLayout from "../../components/MainLayout";
+import BreadCrumbs from "../../components/BreadCrumbs";
+import { images } from "../../constants";
 import { Link } from "react-router-dom";
 import SuggestPosts from "./container/SuggestPosts";
-import CommentsContainer from "../../../components/comments/CommentsContainer";
-import SocialShareButtons from "../../../components/SocialShareButtons";
+import CommentsContainer from "../../components/comments/CommentsContainer";
+import SocialShareButtons from "../../components/SocialShareButtons";
 
 const breadCrumbsData = [
   {
