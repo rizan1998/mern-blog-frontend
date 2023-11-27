@@ -2,8 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import MainLayout from "../../components/MainLayout";
 import { Link } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 
 const RegisterPage = () => {
+  useMutation({
+    mutationFn: ({ name, email, password }) => {
+      return MdSettingsBackupRestore({ name, email, password });
+    },
+  });
   const {
     register,
     handleSubmit,
@@ -19,9 +25,13 @@ const RegisterPage = () => {
     mode: "onChange",
   });
 
-  console.log(errors);
+  console.log(isValid);
 
-  const submitHandler = () => {};
+  const submitHandler = (data) => {
+    console.log(data);
+  };
+
+  const password = watch("password");
 
   return (
     <MainLayout>
@@ -79,20 +89,21 @@ const RegisterPage = () => {
               </label>
               <input
                 type="password"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.name ? "border-red-500" : "border-[#c3cad9]"}`}
+                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.password ? "border-red-500" : "border-[#c3cad9]"}`}
                 placeholder="Enter password"
                 id="password"
                 {...register("password", {
-                  minLength: {
-                    value: 1,
-                    message: "Name length must be at least 1",
-                  },
                   required: {
                     value: true,
-                    message: "Name is required",
+                    message: "Password is required",
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "Password length must be least 6 characters",
                   },
                 })}
               />
+              {errors.password?.message && <p className="text-red-500 text-xs mt-1">{errors.password?.message}</p>}
             </div>
             <div className="flex flex-col mb-6 w-full">
               <label htmlFor="confirmPassword" className="text-[#5a7184] font-semibold block">
@@ -100,25 +111,27 @@ const RegisterPage = () => {
               </label>
               <input
                 type="password"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.name ? "border-red-500" : "border-[#c3cad9]"}`}
+                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.confirmPassword ? "border-red-500" : "border-[#c3cad9]"}`}
                 placeholder="Enter confirm password"
                 id="confirmPassword"
                 {...register("confirmPassword", {
-                  minLength: {
-                    value: 1,
-                    message: "Name length must be at least 1",
-                  },
                   required: {
                     value: true,
-                    message: "Name is required",
+                    message: "Confirm password is required",
+                  },
+                  validate: (value) => {
+                    if (value !== password) {
+                      return "Password do not match";
+                    }
                   },
                 })}
               />
+              {errors.confirmPassword?.message && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword?.message}</p>}
             </div>
             <Link to="/forget-password" className="text-sm font-semibold text-primary">
               Forgot password?
             </Link>
-            <button type="submit" className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg my-6">
+            <button type="submit" disabled={!isValid} className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg my-6 disabled:opacity-70 disabled:cursor-not-allowed">
               Register
             </button>
             <p className="text-sm font-semibold text-[#5a7184]">
