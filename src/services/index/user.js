@@ -1,6 +1,10 @@
 import axios from "axios";
-const signup = async ({ name, email, password }) => {
+export const signup = async ({ name, email, password }) => {
   try {
-    const {} = await axios.options("/api/users/register");
-  } catch (error) {}
+    const { data } = await axios.post("/api/users/register", { name, email, password });
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message) throw new Error(error.message);
+    throw new Error(error.message);
+  }
 };

@@ -1,13 +1,18 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import MainLayout from "../../components/MainLayout";
 import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
+import MainLayout from "../../components/MainLayout";
+import { signup } from "../../services/index/user";
+
 const RegisterPage = () => {
-  useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: ({ name, email, password }) => {
-      return MdSettingsBackupRestore({ name, email, password });
+      return signup({ name, email, password });
+    },
+    onSuccess: (data) => {
+      console.log(data);
     },
   });
   const {
@@ -28,7 +33,8 @@ const RegisterPage = () => {
   console.log(isValid);
 
   const submitHandler = (data) => {
-    console.log(data);
+    const { name, email, password } = data;
+    mutate({ name, email, password });
   };
 
   const password = watch("password");
@@ -131,7 +137,7 @@ const RegisterPage = () => {
             <Link to="/forget-password" className="text-sm font-semibold text-primary">
               Forgot password?
             </Link>
-            <button type="submit" disabled={!isValid} className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg my-6 disabled:opacity-70 disabled:cursor-not-allowed">
+            <button type="submit" disabled={!isValid || isLoading} className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg my-6 disabled:opacity-70 disabled:cursor-not-allowed">
               Register
             </button>
             <p className="text-sm font-semibold text-[#5a7184]">
