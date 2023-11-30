@@ -16,6 +16,7 @@ const RegisterPage = () => {
       console.log(data);
     },
     onError: (error) => {
+      console.log(error);
       toast.error(error.message);
     },
   });
