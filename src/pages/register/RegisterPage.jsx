@@ -3,17 +3,22 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 import MainLayout from "../../components/MainLayout";
 import { signup } from "../../services/index/user";
+import { userActions } from "../../store/reducers/userReducers";
+userActions;
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
   const { mutate, isLoading } = useMutation({
     mutationFn: ({ name, email, password }) => {
       return signup({ name, email, password });
     },
     onSuccess: (data) => {
       console.log(data);
+      dispatch(userActions.setUserInfo(data));
     },
     onError: (error) => {
       console.log(error);
