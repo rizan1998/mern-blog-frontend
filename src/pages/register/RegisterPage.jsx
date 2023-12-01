@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import MainLayout from "../../components/MainLayout";
 import { signup } from "../../services/index/user";
 import { userActions } from "../../store/reducers/userReducers";
-userActions;
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
