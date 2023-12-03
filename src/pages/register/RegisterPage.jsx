@@ -43,7 +43,7 @@ const RegisterPage = () => {
   // console.log(isValid);
 
   const submitHandler = (data) => {
-    console.log(data);
+    // console.log(data);
     const { name, email, password } = data;
     mutate({ name, email, password });
   };
