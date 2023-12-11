@@ -27,7 +27,7 @@ const ProfilePage = () => {
     queryKey: ["profile"],
   });
 
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isLoading: updateProfileIsLoading } = useMutation({
     mutationFn: ({ name, email, password }) => {
       return updateProfile({
         token: userState.userInfo.token,
@@ -142,8 +142,8 @@ const ProfilePage = () => {
               />
               {errors.password?.message && <p className="text-red-500 text-xs mt-1">{errors.password?.message}</p>}
             </div>
-            <button type="submit" disabled={!isValid || profileIsLoading} className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 disabled:opacity-70 disabled:cursor-not-allowed">
-              Register
+            <button type="submit" disabled={!isValid || profileIsLoading || updateProfileIsLoading} className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 disabled:opacity-70 disabled:cursor-not-allowed">
+              Update
             </button>
           </form>
         </div>
